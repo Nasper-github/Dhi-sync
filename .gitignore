@@ -1,20 +1,89 @@
-# API Keys & Secrets
-.env
+=================================================================
 
-# Python Environment
-__pycache__/
+PROJECT SYNC: GLOBAL GIT IGNORE
+
+=================================================================
+
+--- 1. SECURITY & SECRETS (CyberSec Priority) ---
+
+Blocks all environment files in any directory
+
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.production
+**/.env.development
+*.pem
+*.key
+secrets.py
+
+--- 2. PYTHON & BACKEND ---
+
+pycache/
 *.py[cod]
+*$py.class
+.pytest_cache/
+.python-version
+
+Virtual Environments
+
 venv/
 env/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
 
-# Mac System Files
-.DS_Store
+--- 3. FRONTEND (React/Vite/Node) ---
 
-# Streamlit
+node_modules/
+**/node_modules/
+dist/
+/dist/
+dist-ssr/
+.local
+.eslintcache
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+--- 4. STREAMLIT & DATA TOOLS ---
+
 .streamlit/config.toml
 token.json
 credentials.json
-sync-app/node_modules/
-sync-app/.DS_Store
-sync-app/dist/
-sync-app/.env
+.ipynb_checkpoints
+
+--- 5. SYSTEM & IDE ---
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+--- 6. PROJECT SPECIFIC ---
+
+Ignore any temporary document dissections or logs
+
+backend/app/temp/*
+logs/
+*.log

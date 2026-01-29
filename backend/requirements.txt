@@ -1,0 +1,23 @@
+--- WEB & CORE ---
+
+fastapi==0.109.0
+uvicorn==0.27.0
+python-multipart==0.0.6
+pydantic==2.5.3
+python-dotenv==1.0.0
+
+--- SURGICAL INTAKE (PILLAR C) ---
+
+lxml==5.1.0         # For high-fidelity XML/DOM manipulation
+python-docx==1.1.0  # For reading MS Word structure
+pypdf==4.0.0        # For PDF structure extraction
+
+--- RELATIONAL LOGIC (PILLAR C) ---
+
+neo4j==5.16.0       # For the Structural Dependency Graph
+
+--- AGENTIC CORE (PILLAR E) ---
+
+openai==1.12.0      # Primary LLM Interface
+langgraph==0.0.26   # For the PAKTON Tri-Agent Loop
+langchain==0.1.7    # Orchestration framework

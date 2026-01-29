@@ -3,7 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import logging
 
-# This connects our API to the "Brain" logic we just built
+# 1. Router Imports
+# This connects our API to the Extraction service we just built
+from app.api.v1.extractor import router as extractor_router
 from app.core.brain.ingestion.parser import SurgicalParser
 
 # Setup logging to track "Surgical" events in the terminal
@@ -27,7 +29,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize the Scalpel
+# 2. REGISTER ROUTERS
+# This makes the /api/v1/extract endpoint accessible to the frontend
+app.include_router(extractor_router, prefix="/api/v1", tags=["Extraction"])
+
+# Initialize the Scalpel for intake
 parser = SurgicalParser()
 
 @app.get("/")
@@ -45,11 +51,12 @@ async def ingest_document(file: UploadFile = File(...)):
     PHASE 4, STAGE 1: INTELLIGENT INTAKE
     Receives a document, dissects it into the Symbolic DSD XML,
     and returns the structured object to the Frontend.
+    Used for general ingestion (Pillar C).
     """
     logger.info(f"Ingestion triggered for: {file.filename}")
     
-    # Pillar C: We only operate on structured .docx for now
-    if not file.filename.endswith('.docx'):
+    # Pillar C: We only operate on structured .docx for general ingestion
+    if not file.filename.lower().endswith('.docx'):
         raise HTTPException(
             status_code=400,
             detail="Error: Only .docx files are supported for surgical intake."
